@@ -19,7 +19,8 @@ class VectorStore():
         
         self.vectors = []
         for doc in tqdm(self.document, desc="Calculating embeddings"):
-            self.vectors.append(EmbeddingModel.get_embedding(doc))
+            # print(doc)
+            self.vectors.append(EmbeddingModel.get_embedding(doc))  # 将每一个chunk转换为embedding
         return self.vectors
 
     def batch_split_list(self, lst,batch_size):
@@ -56,7 +57,6 @@ class VectorStore():
 
         end_time = time.time()
 
-        result = np.array([self.get_similarity(query_vector, vector)
-                          for vector in self.vectors])
+        result = np.array([self.get_similarity(query_vector, vector) for vector in self.vectors])
         print(' 检索 cost %f second' % (time.time() - end_time))
         return np.array(self.document)[result.argsort()[-k:][::-1]].tolist()

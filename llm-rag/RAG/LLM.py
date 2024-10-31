@@ -43,10 +43,11 @@ class GLM4Chat(BaseModel):
         self.model = model
 
     def chat(self, prompt: str, history: List[dict], content: str) -> str:
-        client = ZhipuAI(api_key=os.getenv("ZHIPUAI_API_KEY"))  # 填写您自己的APIKey
+        client = ZhipuAI(api_key="035d2464721f28214961d92a6cd79994.k9NaCJWNw8OaoaDm")  # 填写您自己的APIKey
         history.append({'role': 'user', 'content': PROMPT_TEMPLATE['RAG_PROMPT_TEMPALTE'].format(question=prompt, context=content)})
         response = client.chat.completions.create(
-            model="glm-4",  # 填写需要调用的模型名称
+            # model="glm-4",  # 填写需要调用的模型名称
+            model="glm-4-plus",  # 填写需要调用的模型名称
             messages=history
         )
         return response.choices[0].message

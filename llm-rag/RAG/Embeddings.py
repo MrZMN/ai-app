@@ -85,7 +85,7 @@ class ZhipuEmbedding(BaseEmbeddings):
         super().__init__(path, is_api)
         if self.is_api:
             from zhipuai import ZhipuAI
-            self.client = ZhipuAI(api_key=os.getenv("ZHIPUAI_API_KEY")) 
+            self.client = ZhipuAI(api_key="035d2464721f28214961d92a6cd79994.k9NaCJWNw8OaoaDm") 
         self.embedding_dim = embedding_dim
 
 
